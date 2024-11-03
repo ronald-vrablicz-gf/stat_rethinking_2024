@@ -1,0 +1,232 @@
+---
+title: "Statistical Rethinking Beispiele"
+format: html
+editor: visual
+---
+
+31.10.2024:
+
+## 2.3.2.1 Observed Variables
+
+Relative Anzahl von Möglichkeiten, sechs Wasser zu bekommen, wobei p bei 0,5 und N = W+L bei neun gehalten wird. Es erledigt also die Aufgabe, die relative Anzahl der Wege durch den Garten zu zählen. Ändern Sie den Wert 0,5 in einen anderen Wert, um zu sehen, wie sich der Wert ändert.
+
+R Code 2.2
+
+```{r}
+Text <- 'Wahrscheinlichkeit 6 W von 9 zu bekommen bei einem Wasseranteil von '
+cat(Text,' 50% : ',dbinom( 6 , size=9 , prob=0.5 ))
+cat(Text,' 60% :',dbinom( 6 , size=9 , prob=0.6 ))
+cat(Text,' 70% :',dbinom( 6 , size=9 , prob=0.7 ))
+```
+## 2.4.3 Grid approximation
+
+(1) Definieren Sie das Raster. Das bedeutet, dass Sie entscheiden, wie viele Punkte für die Schätzung des posterioren Punktes verwendet werden sollen, und dann eine Liste der Parameterwerte im Raster erstellen.   
+(2) Berechnen Sie den Wert des Priors bei jedem Parameterwert im Raster.   
+(3) Berechnen Sie die Wahrscheinlichkeit für jeden Parameterwert.   
+(4) Berechnen Sie den nicht standardisierten nachträglichen Parameterwert, indem Sie den vorherigen mit der Wahrscheinlichkeit multiplizieren.   
+(5) Standardisieren Sie schließlich den A-posterior, indem Sie jeden Wert durch die Summe aller Werte dividieren.
+
+R Code 2.3 und 2.4
+
+```{r}
+# define grid
+ p_grid <- seq( from=0 , to=1 , length.out=20 )
+ # define prior
+ prior <- rep( 1 , 20 )
+ # compute likelihood at each value in grid
+ likelihood <- dbinom( 6 , size=9 , prob=p_grid )
+ # compute product of likelihood and prior
+ unstd.posterior <- likelihood * prior
+ # standardize the posterior, so it sums to 1
+ posterior <- unstd.posterior / sum(unstd.posterior)
+ 
+ plot( p_grid , posterior , type="b" ,
+ xlab="probability of water" , ylab="posterior probability" )
+ mtext( "20 points" )
+```
+
+R Code 2.5
+
+```{r}
+ prior <- ifelse( p_grid < 0.5 , 0 , 1 )
+ prior <- exp(-5*abs( p_grid- 0.5 ) )
+```
+
+Exkurs: log einer Normalverteilung
+
+```{r}
+## Using "log = TRUE" for an extended range :
+#par(mfrow = c(2,1))
+plot(function(x) dnorm(x, log = T), -10, 10,
+     main = "log { Normal density }")
+curve(log(dnorm(x)), add = TRUE, col = "red", lwd = 2)
+mtext("dnorm(x, log=TRUE)", adj = 0)
+mtext("log(dnorm(x))", col = "red", adj = 1)
+```
+
+```{r}
+plot(function(x) pnorm(x, log.p = TRUE), -10, 10,
+     main = "log { Normal Cumulative }")
+curve(log(pnorm(x)), add = TRUE, col = "red", lwd = 2)
+
+plot(function(x) pnorm(x, log.p = FALSE), -10, 10,
+     main = "log { Normal Cumulative }")
+curve(pnorm(x), add = TRUE, col = "red", lwd = 2)
+
+mtext("pnorm(x, log=TRUE)", adj = 0)
+mtext("log(pnorm(x))", col = "red", adj = 1)
+```
+
+R Code 2.6
+
+```{r}
+library(rethinking)
+ globe.qa <- quap(
+ alist(
+ W ~ dbinom( W+L ,p) , # binomial likelihood
+ p ~ dunif(0,1)
+ # uniform prior
+ ) ,
+ data=list(W=6,L=3) )
+ # display summary of quadratic approximation
+ 
+ precis( globe.qa )
+```
+
+## 2.4.5. Markov chain Monte Carlo.
+
+R Code 2.8 und 2.9
+
+```{r}
+ n_samples <- 1000
+ p <- rep( NA , n_samples )
+ p[1] <- 0.5
+ W <- 6
+ L <- 3
+ for ( i in 2:n_samples ) {
+ p_new <- rnorm( 1 , p[i-1] , 0.1 )
+ if ( p_new < 0 ) p_new <- abs( p_new )
+ if ( p_new > 1 ) p_new <- 2- p_new
+ q0 <- dbinom( W , W+L , p[i-1] )
+ q1 <- dbinom( W , W+L , p_new )
+ p[i] <- ifelse( runif(1) < q1/q0 , p_new , p[i-1] )
+ }
+ 
+ dens( p , xlim=c(0,1) )
+ curve( dbeta( x , W+1 , L+1 ) , lty=2 , add=TRUE )
+```
+
+
+## 2.6 Practice
+
+2M1. Recall the globe tossing model from the chapter. Compute and plot the grid approximate
+ posterior distribution for each of the following sets of observations. In each case, assume a uniform
+ prior for p.
+ (1) W, W,W
+ (2) W, W,W,L
+ (3) L, W, W, L, W, W,W
+
+```{r}
+# define grid
+ p_grid <- seq( from=0 , to=1 , length.out=20 )
+ # define prior
+ prior <- rep( 1 , 20 )
+ 
+ # 1
+ # compute likelihood at each value in grid
+ likelihood <- dbinom( 3 , size=3 , prob=p_grid )
+ # compute product of likelihood and prior
+ unstd.posterior <- likelihood * prior
+ # standardize the posterior, so it sums to 1
+ posterior <- unstd.posterior / sum(unstd.posterior)
+ 
+ plot( p_grid , posterior , type="b" ,
+ xlab="probability of water bei W,W,W" , ylab="posterior probability" )
+ mtext( "20 points" )
+ 
+# 2
+# compute likelihood at each value in grid
+ likelihood <- dbinom( 5 , size=7 , prob=p_grid )
+ # compute product of likelihood and prior
+ unstd.posterior <- likelihood * prior
+ # standardize the posterior, so it sums to 1
+ posterior <- unstd.posterior / sum(unstd.posterior)
+ 
+ plot( p_grid , posterior , type="b" ,
+ xlab="probability of water bei W,W,W,L" , ylab="posterior probability" )
+ mtext( "20 points" )
+ 
+ # 3
+ # compute likelihood at each value in grid
+ likelihood <- dbinom( 3 , size=4 , prob=p_grid )
+ # compute product of likelihood and prior
+ unstd.posterior <- likelihood * prior
+ # standardize the posterior, so it sums to 1
+ posterior <- unstd.posterior / sum(unstd.posterior)
+ 
+ plot( p_grid , posterior , type="b" ,
+ xlab="probability of water bei L,W,W,L,W,W,W" , ylab="posterior probability" )
+ mtext( "20 points" )
+```
+
+ 2M2. Now assume a prior for p that is equal to zero when p < 0.5 and is a positive constant when
+ p ≥ 0.5. Again compute and plot the grid approximate posterior distribution for each of the sets of
+ observations in the problem just above.
+ 
+```{r}
+# define grid
+ p_grid <- seq( from=0 , to=1 , length.out=20 )
+ # define prior
+ prior <- ifelse(p_grid < 0.5, 0, 1)
+ 
+ # 1
+ # compute likelihood at each value in grid
+ likelihood <- dbinom( 3 , size=3 , prob=p_grid )
+ # compute product of likelihood and prior
+ unstd.posterior <- likelihood * prior
+ # standardize the posterior, so it sums to 1
+ posterior <- unstd.posterior / sum(unstd.posterior)
+ 
+ plot( p_grid , posterior , type="b" ,
+ xlab="probability of water bei W,W,W" , ylab="posterior probability" )
+ mtext( "20 points" )
+ 
+# 2
+# compute likelihood at each value in grid
+ likelihood <- dbinom( 5 , size=7 , prob=p_grid )
+ # compute product of likelihood and prior
+ unstd.posterior <- likelihood * prior
+ # standardize the posterior, so it sums to 1
+ posterior <- unstd.posterior / sum(unstd.posterior)
+ 
+ plot( p_grid , posterior , type="b" ,
+ xlab="probability of water bei W,W,W,L" , ylab="posterior probability" )
+ mtext( "20 points" )
+ 
+ # 3
+ # compute likelihood at each value in grid
+ likelihood <- dbinom( 3 , size=4 , prob=p_grid )
+ # compute product of likelihood and prior
+ unstd.posterior <- likelihood * prior
+ # standardize the posterior, so it sums to 1
+ posterior <- unstd.posterior / sum(unstd.posterior)
+ 
+ plot( p_grid , posterior , type="b" ,
+ xlab="probability of water bei L,W,W,L,W,W,W" , ylab="posterior probability" )
+ mtext( "20 points" )
+```
+
+
+ 2M3. Suppose there are two globes, one for Earth and one for Mars. The Earth globe is 70% covered
+ in water. The Mars globe is 100% land. Further suppose that one of these globes — you don’t know
+ which — was tossed in the air and produced a “land” observation. Assume that each globe was equally
+ likely to be tossed. Show that the posterior probability that the globe was the Earth, conditional on
+ seeing “land” (Pr(Earth|land)), is 0.23.
+ 
+```{r}
+Text <- 'Wahrscheinlichkeit 1 L von 1 zu bekommen bei einem Landanteil von '
+
+cat(Text,' 30% :',dbinom( 1 , size=1 , prob=0.3 ))
+```
+ 
+ 
