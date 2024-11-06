@@ -18,12 +18,13 @@ cat(Text,' 50% : ',dbinom( 6 , size=9 , prob=0.5 ))
 cat(Text,' 60% :',dbinom( 6 , size=9 , prob=0.6 ))
 cat(Text,' 70% :',dbinom( 6 , size=9 , prob=0.7 ))
 ```
+
 ## 2.4.3 Grid approximation
 
-(1) Definieren Sie das Raster. Das bedeutet, dass Sie entscheiden, wie viele Punkte für die Schätzung des posterioren Punktes verwendet werden sollen, und dann eine Liste der Parameterwerte im Raster erstellen.   
-(2) Berechnen Sie den Wert des Priors bei jedem Parameterwert im Raster.   
-(3) Berechnen Sie die Wahrscheinlichkeit für jeden Parameterwert.   
-(4) Berechnen Sie den nicht standardisierten nachträglichen Parameterwert, indem Sie den vorherigen mit der Wahrscheinlichkeit multiplizieren.   
+(1) Definieren Sie das Raster. Das bedeutet, dass Sie entscheiden, wie viele Punkte für die Schätzung des posterioren Punktes verwendet werden sollen, und dann eine Liste der Parameterwerte im Raster erstellen.\
+(2) Berechnen Sie den Wert des Priors bei jedem Parameterwert im Raster.\
+(3) Berechnen Sie die Wahrscheinlichkeit für jeden Parameterwert.\
+(4) Berechnen Sie den nicht standardisierten nachträglichen Parameterwert, indem Sie den vorherigen mit der Wahrscheinlichkeit multiplizieren.\
 (5) Standardisieren Sie schließlich den A-posterior, indem Sie jeden Wert durch die Summe aller Werte dividieren.
 
 R Code 2.3 und 2.4
@@ -116,15 +117,9 @@ R Code 2.8 und 2.9
  curve( dbeta( x , W+1 , L+1 ) , lty=2 , add=TRUE )
 ```
 
-
 ## 2.6 Practice
 
-2M1. Recall the globe tossing model from the chapter. Compute and plot the grid approximate
- posterior distribution for each of the following sets of observations. In each case, assume a uniform
- prior for p.
- (1) W, W,W
- (2) W, W,W,L
- (3) L, W, W, L, W, W,W
+2M1. Recall the globe tossing model from the chapter. Compute and plot the grid approximate posterior distribution for each of the following sets of observations. In each case, assume a uniform prior for p. (1) W, W,W (2) W, W,W,L (3) L, W, W, L, W, W,W
 
 ```{r}
 # define grid
@@ -169,10 +164,8 @@ R Code 2.8 und 2.9
  mtext( "20 points" )
 ```
 
- 2M2. Now assume a prior for p that is equal to zero when p < 0.5 and is a positive constant when
- p ≥ 0.5. Again compute and plot the grid approximate posterior distribution for each of the sets of
- observations in the problem just above.
- 
+2M2. Now assume a prior for p that is equal to zero when p \< 0.5 and is a positive constant when p ≥ 0.5. Again compute and plot the grid approximate posterior distribution for each of the sets of observations in the problem just above.
+
 ```{r}
 # define grid
  p_grid <- seq( from=0 , to=1 , length.out=20 )
@@ -216,17 +209,43 @@ R Code 2.8 und 2.9
  mtext( "20 points" )
 ```
 
+2M3. Suppose there are two globes, one for Earth and one for Mars. The Earth globe is 70% covered in water. The Mars globe is 100% land. Further suppose that one of these globes — you don’t know which — was tossed in the air and produced a “land” observation. Assume that each globe was equally likely to be tossed. Show that the posterior probability that the globe was the Earth, conditional on seeing “land” (Pr(Earth\|land)), is 0.23.
 
- 2M3. Suppose there are two globes, one for Earth and one for Mars. The Earth globe is 70% covered
- in water. The Mars globe is 100% land. Further suppose that one of these globes — you don’t know
- which — was tossed in the air and produced a “land” observation. Assume that each globe was equally
- likely to be tossed. Show that the posterior probability that the globe was the Earth, conditional on
- seeing “land” (Pr(Earth|land)), is 0.23.
- 
-```{r}
-Text <- 'Wahrscheinlichkeit 1 L von 1 zu bekommen bei einem Landanteil von '
+```{r e2m3}
+# probability of land, given Earth
+p_le <- 0.3
 
-cat(Text,' 30% :',dbinom( 1 , size=1 , prob=0.3 ))
+# probability of land, given Mars
+p_lm <- 1.0
+
+# probability of Earth
+p_e <- 0.5
+
+# probability of land
+p_l <- (p_e * p_le) + ((1 - p_e) * p_lm)
+
+# probability of Earth, given land (using Bayes' Theorem)
+p_el <- (p_le * p_e) / p_l
+p_el
 ```
- 
- 
+
+::: question
+> **2M4.** Suppose you have a deck with only three cards. Each card has only two sides, and each side is either black or white. One card has two black sides. The second card has one black and one white side. The third card has two white sides. Now suppose all three cards are placed in a bag and shuffled. Someone reaches into the bag and pulls out a card and places it flat on a table. A black side is shown facing up, but you don't know the color of the side facing down. Show that the probability that the other side is also black is 2/3. Use the counting method (Section 2 of the chapter) to approach this problem. This means counting up the ways that each card could produce the observed data (a black side faceing up on the table).
+:::
+
+```{r e2m4}
+card_bb_likelihood <- 2
+card_bw_likelihood <- 1
+card_ww_likelihood <- 0
+
+likelihood <- c(card_bb_likelihood, card_bw_likelihood, card_ww_likelihood)
+prior <- c(1, 1, 1)
+posterior <- likelihood * prior
+posterior <- posterior / sum(posterior)
+
+posterior[1]
+```
+
+[Link zu Lösungen](https://github.com/wjakethompson/sr2-solutions/blob/main/01-bayesian-inference.Rmd)
+
+[Link zu Jupiter Notebook mit Lösungen für Kapitel 2](https://github.com/cmayrhofer/Statistical-Rethinking-Exercise-Solutions/blob/main/notebooks/Practice%20Chapter%202.ipynb)

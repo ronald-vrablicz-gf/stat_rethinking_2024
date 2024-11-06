@@ -96,31 +96,343 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="section" class="level2">
-<h2 class="anchored" data-anchor-id="section">2.3.2.1</h2>
+<p>31.10.2024:</p>
+<section id="observed-variables" class="level2">
+<h2 class="anchored" data-anchor-id="observed-variables">2.3.2.1 Observed Variables</h2>
 <p>Relative Anzahl von Möglichkeiten, sechs Wasser zu bekommen, wobei p bei 0,5 und N = W+L bei neun gehalten wird. Es erledigt also die Aufgabe, die relative Anzahl der Wege durch den Garten zu zählen. Ändern Sie den Wert 0,5 in einen anderen Wert, um zu sehen, wie sich der Wert ändert.</p>
+<p>R Code 2.2</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Text <span class="ot">&lt;-</span> <span class="st">'Wahrscheinlichkeit &amp;W von 9 zu bekommen bei einem Wasseranteil von '</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(Text,<span class="st">' 50% : '</span>,<span class="fu">dbinom</span>( <span class="dv">6</span> , <span class="at">size=</span><span class="dv">9</span> , <span class="at">prob=</span><span class="fl">0.5</span> ), <span class="st">'&lt;br&gt;'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Text <span class="ot">&lt;-</span> <span class="st">'Wahrscheinlichkeit 6 W von 9 zu bekommen bei einem Wasseranteil von '</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(Text,<span class="st">' 50% : '</span>,<span class="fu">dbinom</span>( <span class="dv">6</span> , <span class="at">size=</span><span class="dv">9</span> , <span class="at">prob=</span><span class="fl">0.5</span> ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Wahrscheinlichkeit &amp;W von 9 zu bekommen bei einem Wasseranteil von   50% :  0.1640625 &lt;br&gt;</code></pre>
+<pre><code>Wahrscheinlichkeit 6 W von 9 zu bekommen bei einem Wasseranteil von   50% :  0.1640625</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(Text,<span class="st">' 60% :'</span>,<span class="fu">dbinom</span>( <span class="dv">6</span> , <span class="at">size=</span><span class="dv">9</span> , <span class="at">prob=</span><span class="fl">0.6</span> ), <span class="st">'&lt;br&gt;'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(Text,<span class="st">' 60% :'</span>,<span class="fu">dbinom</span>( <span class="dv">6</span> , <span class="at">size=</span><span class="dv">9</span> , <span class="at">prob=</span><span class="fl">0.6</span> ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Wahrscheinlichkeit &amp;W von 9 zu bekommen bei einem Wasseranteil von   60% : 0.2508227 &lt;br&gt;</code></pre>
+<pre><code>Wahrscheinlichkeit 6 W von 9 zu bekommen bei einem Wasseranteil von   60% : 0.2508227</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(Text,<span class="st">' 70% :'</span>,<span class="fu">dbinom</span>( <span class="dv">6</span> , <span class="at">size=</span><span class="dv">9</span> , <span class="at">prob=</span><span class="fl">0.7</span> ), <span class="st">'&lt;br&gt;'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(Text,<span class="st">' 70% :'</span>,<span class="fu">dbinom</span>( <span class="dv">6</span> , <span class="at">size=</span><span class="dv">9</span> , <span class="at">prob=</span><span class="fl">0.7</span> ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Wahrscheinlichkeit &amp;W von 9 zu bekommen bei einem Wasseranteil von   70% : 0.2668279 &lt;br&gt;</code></pre>
+<pre><code>Wahrscheinlichkeit 6 W von 9 zu bekommen bei einem Wasseranteil von   70% : 0.2668279</code></pre>
 </div>
 </div>
-<p>You can add options to executable code like this</p>
+</section>
+<section id="grid-approximation" class="level2">
+<h2 class="anchored" data-anchor-id="grid-approximation">2.4.3 Grid approximation</h2>
+<ol type="1">
+<li>Definieren Sie das Raster. Das bedeutet, dass Sie entscheiden, wie viele Punkte für die Schätzung des posterioren Punktes verwendet werden sollen, und dann eine Liste der Parameterwerte im Raster erstellen.<br>
+</li>
+<li>Berechnen Sie den Wert des Priors bei jedem Parameterwert im Raster.<br>
+</li>
+<li>Berechnen Sie die Wahrscheinlichkeit für jeden Parameterwert.<br>
+</li>
+<li>Berechnen Sie den nicht standardisierten nachträglichen Parameterwert, indem Sie den vorherigen mit der Wahrscheinlichkeit multiplizieren.<br>
+</li>
+<li>Standardisieren Sie schließlich den A-posterior, indem Sie jeden Wert durch die Summe aller Werte dividieren.</li>
+</ol>
+<p>R Code 2.3 und 2.4</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define grid</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a> p_grid <span class="ot">&lt;-</span> <span class="fu">seq</span>( <span class="at">from=</span><span class="dv">0</span> , <span class="at">to=</span><span class="dv">1</span> , <span class="at">length.out=</span><span class="dv">20</span> )</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a> <span class="co"># define prior</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a> prior <span class="ot">&lt;-</span> <span class="fu">rep</span>( <span class="dv">1</span> , <span class="dv">20</span> )</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a> <span class="co"># compute likelihood at each value in grid</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a> likelihood <span class="ot">&lt;-</span> <span class="fu">dbinom</span>( <span class="dv">6</span> , <span class="at">size=</span><span class="dv">9</span> , <span class="at">prob=</span>p_grid )</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a> <span class="co"># compute product of likelihood and prior</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a> unstd.posterior <span class="ot">&lt;-</span> likelihood <span class="sc">*</span> prior</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a> <span class="co"># standardize the posterior, so it sums to 1</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a> posterior <span class="ot">&lt;-</span> unstd.posterior <span class="sc">/</span> <span class="fu">sum</span>(unstd.posterior)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a> <span class="fu">plot</span>( p_grid , posterior , <span class="at">type=</span><span class="st">"b"</span> ,</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a> <span class="at">xlab=</span><span class="st">"probability of water"</span> , <span class="at">ylab=</span><span class="st">"posterior probability"</span> )</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a> <span class="fu">mtext</span>( <span class="st">"20 points"</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="stat_rethink_bsp_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>R Code 2.5</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a> prior <span class="ot">&lt;-</span> <span class="fu">ifelse</span>( p_grid <span class="sc">&lt;</span> <span class="fl">0.5</span> , <span class="dv">0</span> , <span class="dv">1</span> )</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a> prior <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="sc">-</span><span class="dv">5</span><span class="sc">*</span><span class="fu">abs</span>( p_grid<span class="sc">-</span> <span class="fl">0.5</span> ) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Exkurs: log einer Normalverteilung</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Using "log = TRUE" for an extended range :</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#par(mfrow = c(2,1))</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="cf">function</span>(x) <span class="fu">dnorm</span>(x, <span class="at">log =</span> T), <span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"log { Normal density }"</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">log</span>(<span class="fu">dnorm</span>(x)), <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="st">"dnorm(x, log=TRUE)"</span>, <span class="at">adj =</span> <span class="dv">0</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="st">"log(dnorm(x))"</span>, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">adj =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="stat_rethink_bsp_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="cf">function</span>(x) <span class="fu">pnorm</span>(x, <span class="at">log.p =</span> <span class="cn">TRUE</span>), <span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>,</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"log { Normal Cumulative }"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">log</span>(<span class="fu">pnorm</span>(x)), <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="stat_rethink_bsp_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="cf">function</span>(x) <span class="fu">pnorm</span>(x, <span class="at">log.p =</span> <span class="cn">FALSE</span>), <span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>,</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"log { Normal Cumulative }"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">pnorm</span>(x), <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="st">"pnorm(x, log=TRUE)"</span>, <span class="at">adj =</span> <span class="dv">0</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="st">"log(pnorm(x))"</span>, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">adj =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="stat_rethink_bsp_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>R Code 2.6</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rethinking)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Lade nötiges Paket: parallel</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>rethinking (Version 2.13.2)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attache Paket: 'rethinking'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Das folgende Objekt ist maskiert 'package:stats':
+
+    rstudent</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a> globe.qa <span class="ot">&lt;-</span> <span class="fu">quap</span>(</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">alist</span>(</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a> W <span class="sc">~</span> <span class="fu">dbinom</span>( W<span class="sc">+</span>L ,p) , <span class="co"># binomial likelihood</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a> p <span class="sc">~</span> <span class="fu">dunif</span>(<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a> <span class="co"># uniform prior</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a> ) ,</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a> <span class="at">data=</span><span class="fu">list</span>(<span class="at">W=</span><span class="dv">6</span>,<span class="at">L=</span><span class="dv">3</span>) )</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a> <span class="co"># display summary of quadratic approximation</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a> <span class="fu">precis</span>( globe.qa )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
+<pre><code>       mean        sd      5.5%     94.5%
+p 0.6666664 0.1571338 0.4155361 0.9177966</code></pre>
 </div>
 </div>
-<p>The <code>echo: false</code> option disables the printing of code (only output is displayed).</p>
+</section>
+<section id="markov-chain-monte-carlo." class="level2">
+<h2 class="anchored" data-anchor-id="markov-chain-monte-carlo.">2.4.5. Markov chain Monte Carlo.</h2>
+<p>R Code 2.8 und 2.9</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a> n_samples <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a> p <span class="ot">&lt;-</span> <span class="fu">rep</span>( <span class="cn">NA</span> , n_samples )</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a> p[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a> W <span class="ot">&lt;-</span> <span class="dv">6</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a> L <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a> <span class="cf">for</span> ( i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>n_samples ) {</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a> p_new <span class="ot">&lt;-</span> <span class="fu">rnorm</span>( <span class="dv">1</span> , p[i<span class="dv">-1</span>] , <span class="fl">0.1</span> )</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a> <span class="cf">if</span> ( p_new <span class="sc">&lt;</span> <span class="dv">0</span> ) p_new <span class="ot">&lt;-</span> <span class="fu">abs</span>( p_new )</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a> <span class="cf">if</span> ( p_new <span class="sc">&gt;</span> <span class="dv">1</span> ) p_new <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">-</span> p_new</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a> q0 <span class="ot">&lt;-</span> <span class="fu">dbinom</span>( W , W<span class="sc">+</span>L , p[i<span class="dv">-1</span>] )</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a> q1 <span class="ot">&lt;-</span> <span class="fu">dbinom</span>( W , W<span class="sc">+</span>L , p_new )</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a> p[i] <span class="ot">&lt;-</span> <span class="fu">ifelse</span>( <span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> q1<span class="sc">/</span>q0 , p_new , p[i<span class="dv">-1</span>] )</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a> }</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a> <span class="fu">dens</span>( p , <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>) )</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a> <span class="fu">curve</span>( <span class="fu">dbeta</span>( x , W<span class="sc">+</span><span class="dv">1</span> , L<span class="sc">+</span><span class="dv">1</span> ) , <span class="at">lty=</span><span class="dv">2</span> , <span class="at">add=</span><span class="cn">TRUE</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="stat_rethink_bsp_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="practice" class="level2">
+<h2 class="anchored" data-anchor-id="practice">2.6 Practice</h2>
+<p>2M1. Recall the globe tossing model from the chapter. Compute and plot the grid approximate posterior distribution for each of the following sets of observations. In each case, assume a uniform prior for p.&nbsp;(1) W, W,W (2) W, W,W,L (3) L, W, W, L, W, W,W</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define grid</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a> p_grid <span class="ot">&lt;-</span> <span class="fu">seq</span>( <span class="at">from=</span><span class="dv">0</span> , <span class="at">to=</span><span class="dv">1</span> , <span class="at">length.out=</span><span class="dv">20</span> )</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a> <span class="co"># define prior</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a> prior <span class="ot">&lt;-</span> <span class="fu">rep</span>( <span class="dv">1</span> , <span class="dv">20</span> )</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a> <span class="co"># 1</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a> <span class="co"># compute likelihood at each value in grid</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a> likelihood <span class="ot">&lt;-</span> <span class="fu">dbinom</span>( <span class="dv">3</span> , <span class="at">size=</span><span class="dv">3</span> , <span class="at">prob=</span>p_grid )</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a> <span class="co"># compute product of likelihood and prior</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a> unstd.posterior <span class="ot">&lt;-</span> likelihood <span class="sc">*</span> prior</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a> <span class="co"># standardize the posterior, so it sums to 1</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a> posterior <span class="ot">&lt;-</span> unstd.posterior <span class="sc">/</span> <span class="fu">sum</span>(unstd.posterior)</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a> <span class="fu">plot</span>( p_grid , posterior , <span class="at">type=</span><span class="st">"b"</span> ,</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a> <span class="at">xlab=</span><span class="st">"probability of water bei W,W,W"</span> , <span class="at">ylab=</span><span class="st">"posterior probability"</span> )</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a> <span class="fu">mtext</span>( <span class="st">"20 points"</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="stat_rethink_bsp_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co"># compute likelihood at each value in grid</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a> likelihood <span class="ot">&lt;-</span> <span class="fu">dbinom</span>( <span class="dv">5</span> , <span class="at">size=</span><span class="dv">7</span> , <span class="at">prob=</span>p_grid )</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a> <span class="co"># compute product of likelihood and prior</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a> unstd.posterior <span class="ot">&lt;-</span> likelihood <span class="sc">*</span> prior</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a> <span class="co"># standardize the posterior, so it sums to 1</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a> posterior <span class="ot">&lt;-</span> unstd.posterior <span class="sc">/</span> <span class="fu">sum</span>(unstd.posterior)</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a> <span class="fu">plot</span>( p_grid , posterior , <span class="at">type=</span><span class="st">"b"</span> ,</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a> <span class="at">xlab=</span><span class="st">"probability of water bei W,W,W,L"</span> , <span class="at">ylab=</span><span class="st">"posterior probability"</span> )</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a> <span class="fu">mtext</span>( <span class="st">"20 points"</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="stat_rethink_bsp_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a> <span class="co"># 3</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a> <span class="co"># compute likelihood at each value in grid</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a> likelihood <span class="ot">&lt;-</span> <span class="fu">dbinom</span>( <span class="dv">3</span> , <span class="at">size=</span><span class="dv">4</span> , <span class="at">prob=</span>p_grid )</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a> <span class="co"># compute product of likelihood and prior</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a> unstd.posterior <span class="ot">&lt;-</span> likelihood <span class="sc">*</span> prior</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a> <span class="co"># standardize the posterior, so it sums to 1</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a> posterior <span class="ot">&lt;-</span> unstd.posterior <span class="sc">/</span> <span class="fu">sum</span>(unstd.posterior)</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a> <span class="fu">plot</span>( p_grid , posterior , <span class="at">type=</span><span class="st">"b"</span> ,</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a> <span class="at">xlab=</span><span class="st">"probability of water bei L,W,W,L,W,W,W"</span> , <span class="at">ylab=</span><span class="st">"posterior probability"</span> )</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a> <span class="fu">mtext</span>( <span class="st">"20 points"</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="stat_rethink_bsp_files/figure-html/unnamed-chunk-8-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>2M2. Now assume a prior for p that is equal to zero when p &lt; 0.5 and is a positive constant when p ≥ 0.5. Again compute and plot the grid approximate posterior distribution for each of the sets of observations in the problem just above.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define grid</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a> p_grid <span class="ot">&lt;-</span> <span class="fu">seq</span>( <span class="at">from=</span><span class="dv">0</span> , <span class="at">to=</span><span class="dv">1</span> , <span class="at">length.out=</span><span class="dv">20</span> )</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a> <span class="co"># define prior</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a> prior <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(p_grid <span class="sc">&lt;</span> <span class="fl">0.5</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a> <span class="co"># 1</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a> <span class="co"># compute likelihood at each value in grid</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a> likelihood <span class="ot">&lt;-</span> <span class="fu">dbinom</span>( <span class="dv">3</span> , <span class="at">size=</span><span class="dv">3</span> , <span class="at">prob=</span>p_grid )</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a> <span class="co"># compute product of likelihood and prior</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a> unstd.posterior <span class="ot">&lt;-</span> likelihood <span class="sc">*</span> prior</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a> <span class="co"># standardize the posterior, so it sums to 1</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a> posterior <span class="ot">&lt;-</span> unstd.posterior <span class="sc">/</span> <span class="fu">sum</span>(unstd.posterior)</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a> <span class="fu">plot</span>( p_grid , posterior , <span class="at">type=</span><span class="st">"b"</span> ,</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a> <span class="at">xlab=</span><span class="st">"probability of water bei W,W,W"</span> , <span class="at">ylab=</span><span class="st">"posterior probability"</span> )</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a> <span class="fu">mtext</span>( <span class="st">"20 points"</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="stat_rethink_bsp_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># compute likelihood at each value in grid</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a> likelihood <span class="ot">&lt;-</span> <span class="fu">dbinom</span>( <span class="dv">5</span> , <span class="at">size=</span><span class="dv">7</span> , <span class="at">prob=</span>p_grid )</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a> <span class="co"># compute product of likelihood and prior</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a> unstd.posterior <span class="ot">&lt;-</span> likelihood <span class="sc">*</span> prior</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a> <span class="co"># standardize the posterior, so it sums to 1</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a> posterior <span class="ot">&lt;-</span> unstd.posterior <span class="sc">/</span> <span class="fu">sum</span>(unstd.posterior)</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a> <span class="fu">plot</span>( p_grid , posterior , <span class="at">type=</span><span class="st">"b"</span> ,</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a> <span class="at">xlab=</span><span class="st">"probability of water bei W,W,W,L"</span> , <span class="at">ylab=</span><span class="st">"posterior probability"</span> )</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a> <span class="fu">mtext</span>( <span class="st">"20 points"</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="stat_rethink_bsp_files/figure-html/unnamed-chunk-9-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a> <span class="co"># 3</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a> <span class="co"># compute likelihood at each value in grid</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a> likelihood <span class="ot">&lt;-</span> <span class="fu">dbinom</span>( <span class="dv">3</span> , <span class="at">size=</span><span class="dv">4</span> , <span class="at">prob=</span>p_grid )</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a> <span class="co"># compute product of likelihood and prior</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a> unstd.posterior <span class="ot">&lt;-</span> likelihood <span class="sc">*</span> prior</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a> <span class="co"># standardize the posterior, so it sums to 1</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a> posterior <span class="ot">&lt;-</span> unstd.posterior <span class="sc">/</span> <span class="fu">sum</span>(unstd.posterior)</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a> <span class="fu">plot</span>( p_grid , posterior , <span class="at">type=</span><span class="st">"b"</span> ,</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a> <span class="at">xlab=</span><span class="st">"probability of water bei L,W,W,L,W,W,W"</span> , <span class="at">ylab=</span><span class="st">"posterior probability"</span> )</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a> <span class="fu">mtext</span>( <span class="st">"20 points"</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="stat_rethink_bsp_files/figure-html/unnamed-chunk-9-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>2M3. Suppose there are two globes, one for Earth and one for Mars. The Earth globe is 70% covered in water. The Mars globe is 100% land. Further suppose that one of these globes — you don’t know which — was tossed in the air and produced a “land” observation. Assume that each globe was equally likely to be tossed. Show that the posterior probability that the globe was the Earth, conditional on seeing “land” (Pr(Earth|land)), is 0.23.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># probability of land, given Earth</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>p_le <span class="ot">&lt;-</span> <span class="fl">0.3</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># probability of land, given Mars</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>p_lm <span class="ot">&lt;-</span> <span class="fl">1.0</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="co"># probability of Earth</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>p_e <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="co"># probability of land</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>p_l <span class="ot">&lt;-</span> (p_e <span class="sc">*</span> p_le) <span class="sc">+</span> ((<span class="dv">1</span> <span class="sc">-</span> p_e) <span class="sc">*</span> p_lm)</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="co"># probability of Earth, given land (using Bayes' Theorem)</span></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>p_el <span class="ot">&lt;-</span> (p_le <span class="sc">*</span> p_e) <span class="sc">/</span> p_l</span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>p_el</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.2307692</code></pre>
+</div>
+</div>
+<div class="question">
+<blockquote class="blockquote">
+<p><strong>2M4.</strong> Suppose you have a deck with only three cards. Each card has only two sides, and each side is either black or white. One card has two black sides. The second card has one black and one white side. The third card has two white sides. Now suppose all three cards are placed in a bag and shuffled. Someone reaches into the bag and pulls out a card and places it flat on a table. A black side is shown facing up, but you don’t know the color of the side facing down. Show that the probability that the other side is also black is 2/3. Use the counting method (Section 2 of the chapter) to approach this problem. This means counting up the ways that each card could produce the observed data (a black side faceing up on the table).</p>
+</blockquote>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>card_bb_likelihood <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>card_bw_likelihood <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>card_ww_likelihood <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>likelihood <span class="ot">&lt;-</span> <span class="fu">c</span>(card_bb_likelihood, card_bw_likelihood, card_ww_likelihood)</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>prior <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>posterior <span class="ot">&lt;-</span> likelihood <span class="sc">*</span> prior</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>posterior <span class="ot">&lt;-</span> posterior <span class="sc">/</span> <span class="fu">sum</span>(posterior)</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>posterior[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.6666667</code></pre>
+</div>
+</div>
+<p><a href="https://github.com/wjakethompson/sr2-solutions/blob/main/01-bayesian-inference.Rmd">Link zu Lösungen</a></p>
+<p><a href="https://github.com/cmayrhofer/Statistical-Rethinking-Exercise-Solutions/blob/main/notebooks/Practice%20Chapter%202.ipynb">Link zu Jupiter Notebook mit Lösungen für Kapitel 2</a></p>
 </section>
 
 </main>

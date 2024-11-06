@@ -3,3 +3,5 @@
 .RData
 .Ruserdata
 /scripts/stat_rethink_bsp_files
+/scripts/01-bayesian-inference_cache
+/scripts/01-bayesian-inference_files
